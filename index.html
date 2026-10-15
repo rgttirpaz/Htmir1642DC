@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>亡者世界 Deceasedcraft</title>
+<meta name="description" content="喪屍末日搜打撤 Minecraft 模組伺服器">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Noto+Sans+TC:wght@400;500;900&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#1d201e;--steel:#2a2f2c;--steel-2:#363c38;--bone:#e7e1d0;--dim:#a7a99f;--rust:#d0582a;--hazard:#e0b72e;--ok:#7fbf6a;
+--hero-img:none;--band-img:none}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--ground);color:var(--bone);font:400 16px/1.7 "Noto Sans TC",system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hazard);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.display{font-family:"Big Shoulders Display","Noto Sans TC",sans-serif;font-weight:900;letter-spacing:.02em}
+.hazard{height:14px;background:repeating-linear-gradient(-45deg,var(--hazard) 0 14px,var(--ground) 14px 28px)}
+nav{position:sticky;top:0;z-index:5;background:rgba(29,32,30,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--steel-2)}
+nav .wrap{display:flex;gap:22px;align-items:center;height:52px;overflow-x:auto;white-space:nowrap}
+nav b{margin-right:auto;font-size:20px}
+nav a{text-decoration:none;color:var(--dim);font-size:14px}
+nav a:hover{color:var(--bone)}
+.hero{position:relative;min-height:78vh;display:grid;align-items:end;padding:80px 0 56px;
+ background:linear-gradient(180deg,rgba(29,32,30,.2),var(--ground) 96%),var(--hero-img),radial-gradient(ellipse at 70% 20%,#5a3a26 0,transparent 55%),radial-gradient(ellipse at 15% 80%,#2f4a3a 0,transparent 50%),var(--steel);
+ background-size:cover;background-position:center}
+.hero h1{font-size:clamp(56px,12vw,132px);line-height:.95}
+.hero h1 small{display:block;font-size:.28em;color:var(--rust);letter-spacing:.18em;margin-top:10px}
+.hero p{max-width:30em;margin:18px 0 28px;font-size:18px}
+.ip{display:inline-flex;align-items:stretch;border:2px solid var(--bone);background:rgba(29,32,30,.7);max-width:100%}
+.ip code{padding:12px 18px;font:500 18px/1.2 ui-monospace,Menlo,Consolas,monospace;align-self:center;overflow-wrap:anywhere}
+.cp{border:0;background:var(--rust);color:#fff;font:900 15px "Noto Sans TC";padding:0 20px;cursor:pointer;min-height:44px}
+.cp:hover{background:#e56a3a}
+.status{margin-top:14px;font-size:14px;color:var(--dim)}
+.status a{color:var(--bone)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--dim);margin-right:8px}
+.dot.on{background:var(--ok)}.dot.off{background:var(--rust)}
+.notice{background:var(--hazard);color:#1d201e;font-weight:900;padding:10px 0;font-size:15px}
+.band{background:var(--steel);border-block:1px solid var(--steel-2);padding:26px 0;margin-top:72px;
+ background-image:linear-gradient(90deg,var(--steel) 35%,rgba(42,47,44,.55)),var(--band-img);background-size:cover;background-position:center}
+.band h2{font-size:clamp(30px,5vw,44px);line-height:1.1}
+.band p{color:var(--dim);margin-top:4px}
+.band .wrap{border-left:8px solid var(--rust);padding-left:18px;margin-left:max(20px,calc((100vw - 1040px)/2))}
+section .body{padding-top:32px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--steel);border:1px solid var(--steel-2);padding:22px}
+.card h3{font-size:19px;margin-bottom:6px}
+.card p,.card li{color:var(--dim);font-size:15px}
+.card ul{padding-left:1.1em}
+.card .tag{font-size:13px;color:var(--hazard)}
+.card .note{margin-top:10px;font-size:14px;color:var(--bone)}
+.card.pic{padding:0}
+.card.pic .img{height:130px;background:linear-gradient(135deg,var(--steel-2),#4a3a2e);background-size:cover}
+.card.pic div:last-child{padding:18px 22px 22px}
+.step{border-top:6px solid var(--rust)}
+.step .n{font-size:42px;color:var(--rust);line-height:1}
+.btn{display:inline-block;margin:12px 8px 0 0;background:var(--bone);color:var(--ground);padding:8px 16px;font-weight:900;text-decoration:none;font-size:14px;cursor:pointer;border:0;font-family:inherit}
+.btn:hover{background:var(--hazard)}
+details.qr summary{display:inline-block;list-style:none}
+details.qr summary::after{content:""}
+details.qr img{display:block;width:160px;margin-top:10px;background:#fff}
+.lines{margin-top:16px}
+.line{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;background:var(--steel);border:1px solid var(--steel-2);padding:10px 14px;margin-bottom:8px}
+.line b{min-width:9em}
+.line em{font-style:normal;color:var(--ok);font-size:13px}
+.line code{font:500 15px ui-monospace,Menlo,Consolas,monospace;margin-right:auto}
+.line .cp{padding:6px 14px;min-height:0}
+.who h3{font-size:20px;margin:30px 0 12px;color:var(--hazard)}
+.members{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.member{display:grid;grid-template-columns:96px 1fr;gap:16px;background:var(--steel);border:1px solid var(--steel-2);padding:16px}
+.av{width:96px;height:96px;object-fit:cover;background:var(--steel-2);image-rendering:pixelated;display:grid;place-items:center;font-size:36px;color:var(--rust);font-weight:900}
+.member .id{font-size:22px;line-height:1.2}
+.member .bio{color:var(--dim);font-size:15px;margin-top:6px}
+.member .duty{color:var(--hazard);font-size:13px;margin-top:6px}
+.marq{overflow:hidden;padding:12px 0}
+.track{display:flex;gap:14px;width:max-content;animation:scroll var(--dur,40s) linear infinite}
+.marq:hover .track{animation-play-state:paused}
+.track img,.track .ph{height:200px;min-width:260px;object-fit:cover;flex:none;border:1px solid var(--steel-2);background:var(--steel-2)}
+@keyframes scroll{to{transform:translateX(calc(-50% - 7px))}}
+@media(prefers-reduced-motion:reduce){.track{animation:none}.marq{overflow-x:auto}}
+details.qa{background:var(--steel);border:1px solid var(--steel-2);margin-bottom:10px}
+details.qa summary{padding:16px 20px;cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary::after{content:"+";color:var(--rust);font-size:22px;line-height:1}
+details.qa[open] summary::after{content:"−"}
+details.qa p{padding:0 20px 18px;color:var(--dim)}
+footer{margin-top:80px;background:var(--steel);padding:36px 0 44px;color:var(--dim);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a{margin-right:18px}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b class="display">DECEASEDCRAFT</b>
+<a href="#join">如何加入</a><a href="#news">重要更新</a><a href="#about">我們是誰</a><a href="#gallery">畢業照</a><a href="#qa">Q&amp;A</a></div></nav>
+
+<header class="hero"><div class="wrap">
+<h1 class="display">亡者世界<small>DECEASEDCRAFT 5.11.19</small></h1>
+<p>喪屍末日裡的搜打撤。出發搜刮物資，躲過屍群與其他倖存者，在撤離點活著回來。</p>
+<div class="ip"><code id="heroip"></code><button class="cp" type="button" data-copy-id="heroip">複製 IP</button></div>
+<div class="status" id="status"><span class="dot"></span>正在查詢伺服器狀態…</div>
+<div class="status"><a href="#lines">查看全部四條線路</a></div>
+</div></header>
+<div class="hazard"></div>
+<div class="notice"><div class="wrap">本服務器基於《亡者世界》整合包修改，非原作者官方服務器。所有群成員請把群暱稱改成遊戲名。</div></div>
+
+<main>
+<section id="features">
+<div class="band"><div class="wrap"><h2 class="display">玩法特色</h2><p>四件事，決定你能不能活著回來</p></div></div>
+<div class="wrap body grid">
+<article class="card pic"><div class="img"></div><div><h3>空投與搜刮</h3><p>真實空投模組，戰利品表經過調整。每 8 天出現一次隨機大型空投。</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>槍械與載具</h3><p>TACZ 多款槍包、卓越前線載具包，所有附屬都經過修改。</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>義體改造</h3><p>加入 cyberware，醫療空投會掉落各種義體。</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>工業與基地</h3><p>沉浸工程、環流網絡等模組，把戰利品變成自己的據點。</p></div></article>
+</div></section>
+
+<section id="join">
+<div class="band"><div class="wrap"><h2 class="display">如何加入</h2><p>三步驟，十分鐘內上線</p></div></div>
+<div class="wrap body">
+<div class="grid">
+<article class="card step"><div class="n display">1</div><h3>加入交流群</h3><p>模組包只在交流群提供。進群後請把暱稱改成遊戲名。</p>
+<a class="btn" href="https://discord.gg/24T5KgCCSU" target="_blank" rel="noopener">Discord 群</a>
+<details class="qr" style="display:inline"><summary class="btn">微信群</summary><img src="img/wechat-qr.png" alt="微信群 QR Code" onerror="this.replaceWith(Object.assign(document.createElement('p'),{textContent:'（請放入 img/wechat-qr.png）'}))"></details></article>
+<article class="card step"><div class="n display">2</div><h3>安裝模組包</h3><p>從群內下載模組包並匯入啟動器。另需手動加入群內置頂的「建築手杖」模組。</p></article>
+<article class="card step"><div class="n display">3</div><h3>連線伺服器</h3><p>多人遊戲 → 新增伺服器，貼上下方任一線路的位址。</p></article>
+</div>
+<div class="lines" id="lines"></div>
+</div></section>
+
+<section id="news">
+<div class="band"><div class="wrap"><h2 class="display">重要更新</h2><p>最新三則，內容由 HackMD 同步</p></div></div>
+<div class="wrap body grid" id="updates"></div>
+</section>
+
+<section id="about">
+<div class="band"><div class="wrap"><h2 class="display">我們是誰</h2><p>一群在末日裡玩模組的人</p></div></div>
+<div class="wrap body who">
+<p style="max-width:40em">亡者世界整合包由<a href="#">（原作者名稱）</a>製作，目前仍在內測。我們只是在原整合包上加入部分模組、調整配方後開服遊玩。整合包本身的版權與功勞屬於原作者。</p>
+<h3 class="display">服主</h3>
+<div class="members">
+<div class="member"><img class="av" data-img="img/avatars/icfc.png" data-name="ICFC" alt="ICFC 頭貼"><div><div class="id display">ICFC</div><p class="bio">一段個性簽名</p><p class="duty">負責：伺服器整體營運</p></div></div>
+</div>
+<h3 class="display">管理員</h3>
+<div class="members">
+<div class="member"><img class="av" data-img="img/avatars/admin1.png" data-name="某某某" alt="某某某 頭貼"><div><div class="id display">某某某</div><p class="bio">一段個性簽名</p><p class="duty">負責：（填寫內容）</p></div></div>
+<div class="member"><img class="av" data-img="img/avatars/admin2.png" data-name="某某某" alt="某某某 頭貼"><div><div class="id display">某某某</div><p class="bio">一段個性簽名</p><p class="duty">負責：（填寫內容）</p></div></div>
+</div></div></section>
+
+<section id="gallery">
+<div class="band"><div class="wrap"><h2 class="display">畢業照</h2><p>每一位離開末日的倖存者</p></div></div>
+<div class="body marq"><div class="track" id="track"></div></div>
+</section>
+
+<section id="qa">
+<div class="band"><div class="wrap"><h2 class="display">Q&amp;A</h2><p>常見問題</p></div></div>
+<div class="wrap body">
+<details class="qa"><summary>該選哪一條線路？</summary><p>大陸玩家用「大陸直連」，最穩定。其他地區用香港一、二、三號線，哪條順就用哪條。</p></details>
+<details class="qa"><summary>為什麼要改群暱稱？</summary><p>所有群成員需把暱稱改成遊戲名，方便管理員辨識與處理問題。</p></details>
+<details class="qa"><summary>怎麼開啟末日／困難模式？</summary><p>由管理員指定開啟，目前為測試階段，遇到 bug 請通知管理員或服主。</p></details>
+<details class="qa"><summary>想上傳自己的 YSM 模型？</summary><p>請聯絡服主或管理員代為上傳。</p></details>
+<details class="qa"><summary>需要白名單嗎？</summary><p>（請填寫）</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div><a href="https://discord.gg/24T5KgCCSU" target="_blank" rel="noopener">Discord</a><a href="#">GitHub</a><a href="#">HackMD</a></div>
+<div>基於《亡者世界》整合包修改・非原作者官方服務器・非 Mojang 官方，與 Microsoft 無關</div>
+</div></footer>
+
+<script type="text/plain" id="fallback-updates">5.11.8
+-加入车万女仆模组，女仆召唤、复活以及女仆饰品配方均有改动，每人最多拥有1个女仆
+-加入ysm模型，可通过服主或管理员上传模型
+-加入机械改造（cyberware）模组
+-加入真实空投模组，空投战利品已经常相应适配
+-加入玩家救援模組
+特别鸣谢：南宫廑羲 对这次重要更新的技术支持！
+
+5.11.18版本更新公告：
+-新增“龙之崛起”卓越前线附属载具包
+-新增tacz枪包“独特武装”，“沃芬军工”
+-火炮核心加入空军基地战利品表
+-医疗空投加入更多种类的义体
+-略微提高了投放医疗空投的权重，略微降低了投放武器空投的权重
+-随机大型空投投放间隔由10天缩短至8天，并略微增加了出现物品的种类和数量
+-新增tacz弹药直接转换为卓越前线的重型弹药和步枪弹药的配方（所有新增附属均经过修改）
+感谢lie ren 39对版本更新的帮助
+
+5.11.19版本更新公告：
+-新增环流网络
+-新增沉浸工程装饰模组
+-新增ATT枪包
+-鉴于tps问题得到缓解，为提高游戏体验，略微提升了服务器视距
+-现在可由管理员指定开启某人的末日/困难模式（测试阶段，遇到bug及时通知管理或服主）
+需要手动额外添加置顶的建筑手杖模组
+</script>
+<script>
+const CONFIG={
+  updatesUrl:"content/updates.md",   // 可改成 HackMD 的 .../download 網址（需測試是否允許跨域）
+  galleryUrl:"content/gallery.md",
+  hackmdUrl:"#"
+};
+const LINES=[
+  {name:"大陸直連",tag:"最穩定",ip:"mc7.yldw.net:51052"},
+  {name:"海外・香港一號線",ip:"as1.yldw.net:51052"},
+  {name:"海外・香港二號線",ip:"as2.yldw.net:51052"},
+  {name:"海外・香港三號線",ip:"as3.yldw.net:51052"}
+];
+const HERO=LINES[1].ip;
+const $=id=>document.getElementById(id);
+const esc=s=>{const d=document.createElement("div");d.textContent=s;return d.innerHTML};
+
+$("heroip").textContent=HERO;
+$("lines").innerHTML=LINES.map(l=>`<div class="line"><b>${l.name}</b>${l.tag?`<em>${l.tag}</em>`:""}<code>${l.ip}</code><button class="cp" type="button" data-copy="${l.ip}">複製</button></div>`).join("");
+
+document.addEventListener("click",async e=>{
+  const b=e.target.closest(".cp");if(!b)return;
+  const text=b.dataset.copy||$(b.dataset.copyId).textContent;
+  const old=b.textContent;
+  try{await navigator.clipboard.writeText(text);b.textContent="已複製"}catch{b.textContent="請手動複製"}
+  setTimeout(()=>b.textContent=old,1800);
+});
+
+(async()=>{
+  const el=$("status");
+  try{
+    const d=await (await fetch("https://api.mcsrvstat.us/3/"+HERO)).json();
+    el.innerHTML=d.online?`<span class="dot on"></span>線上　${d.players.online} / ${d.players.max} 人`:`<span class="dot off"></span>目前離線`;
+  }catch{el.innerHTML=`<span class="dot"></span>無法取得狀態`}
+})();
+
+async function load(url){
+  try{const r=await fetch(url,{cache:"no-cache"});if(!r.ok)throw 0;return await r.text()}catch{return null}
+}
+
+function parseUpdates(md){
+  const out=[];let cur=null;
+  md.split(/\r?\n/).forEach(l=>{
+    l=l.trim();if(!l)return;
+    const v=l.match(/^#*\s*(\d+(?:\.\d+)+)/);
+    if(v){cur={ver:v[1],items:[],notes:[]};out.push(cur)}
+    else if(cur){/^[-*]\s*/.test(l)?cur.items.push(l.replace(/^[-*]\s*/,"")):cur.notes.push(l)}
+  });
+  return out.reverse();
+}
+(async()=>{
+  const md=(await load(CONFIG.updatesUrl))||$("fallback-updates").textContent;
+  $("updates").innerHTML=parseUpdates(md).slice(0,3).map(u=>`<article class="card"><div class="tag">版本 ${esc(u.ver)}</div><h3>${esc(u.ver)} 更新</h3><ul>${u.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>${u.notes.map(n=>`<p class="note">${esc(n)}</p>`).join("")}</article>`).join("")
+   +(CONFIG.hackmdUrl!=="#"?`<a class="btn" href="${CONFIG.hackmdUrl}" target="_blank" rel="noopener">完整更新紀錄</a>`:"");
+})();
+
+(async()=>{
+  const md=(await load(CONFIG.galleryUrl))||"";
+  const urls=[...md.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g),...md.matchAll(/<img[^>]+src="([^"]+)"/g)].map(m=>m[1]).filter(u=>!u.includes("example.com"));
+  let list=urls.length?urls:Array(8).fill(null);
+  while(list.length<8)list=list.concat(urls.length?urls:[null]);
+  const html=list.map(u=>u?`<img src="${esc(u)}" alt="畢業照" loading="lazy">`:`<div class="ph"></div>`).join("");
+  $("track").style.setProperty("--dur",list.length*5+"s");
+  $("track").innerHTML=html+html;
+})();
+
+document.querySelectorAll(".av").forEach(img=>{
+  const fb=()=>img.replaceWith(Object.assign(document.createElement("div"),{className:"av",textContent:img.dataset.name[0]}));
+  img.onerror=fb;img.src=img.dataset.img;
+});
+</script>
+</body>
+</html>
