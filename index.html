@@ -55,6 +55,8 @@ section .body{padding-top:32px}
 .card.pic{padding:0}
 .card.pic .img{height:130px;background:linear-gradient(135deg,var(--steel-2),#4a3a2e);background-size:cover}
 .card.pic div:last-child{padding:18px 22px 22px}
+.grid.four{grid-template-columns:repeat(2,1fr)}
+@media(max-width:600px){.grid.four{grid-template-columns:1fr}}
 .step{border-top:6px solid var(--rust)}
 .step .n{font-size:42px;color:var(--rust);line-height:1}
 .btn{display:inline-block;margin:12px 8px 0 0;background:var(--bone);color:var(--ground);padding:8px 16px;font-weight:900;text-decoration:none;font-size:14px;cursor:pointer;border:0;font-family:inherit}
@@ -93,51 +95,51 @@ footer a{margin-right:18px}
 </style>
 </head>
 <body>
-<nav><div class="wrap"><b class="display">DECEASEDCRAFT</b>
-<a href="#join">如何加入</a><a href="#news">重要更新</a><a href="#about">我們是誰</a><a href="#gallery">畢業照</a><a href="#qa">Q&amp;A</a></div></nav>
+<nav><div class="wrap"><b class="display" style="color: #D0582A;">DECEASEDCRAFT</b>
+<a href="#join">如何加入</a><a href="#news">重要更新</a><a href="#about">我們是誰</a><a href="#gallery">結檔照</a><a href="#qa">Q&amp;A</a></div></nav>
 
 <header class="hero"><div class="wrap">
 <h1 class="display">亡者世界<small>DECEASEDCRAFT 5.11.19</small></h1>
-<p>喪屍末日裡的搜打撤。出發搜刮物資，躲過屍群與其他倖存者，在撤離點活著回來。</p>
+<p>喪屍末日裡的搜打撤。出發搜刮物資，躲過屍群與其他倖存者，活著撤回據點，發展工業活下去。</p>
 <div class="ip"><code id="heroip"></code><button class="cp" type="button" data-copy-id="heroip">複製 IP</button></div>
 <div class="status" id="status"><span class="dot"></span>正在查詢伺服器狀態…</div>
 <div class="status"><a href="#lines">查看全部四條線路</a></div>
 </div></header>
 <div class="hazard"></div>
-<div class="notice"><div class="wrap">本服務器基於《亡者世界》整合包修改，非原作者官方服務器。所有群成員請把群暱稱改成遊戲名。</div></div>
+<div class="notice"><div class="wrap">本服務器基於《亡者世界》整合包修改，非原作者官方服務器。</div></div>
 
 <main>
 <section id="features">
 <div class="band"><div class="wrap"><h2 class="display">玩法特色</h2><p>四件事，決定你能不能活著回來</p></div></div>
 <div class="wrap body grid">
-<article class="card pic"><div class="img"></div><div><h3>空投與搜刮</h3><p>真實空投模組，戰利品表經過調整。每 8 天出現一次隨機大型空投。</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>槍械與載具</h3><p>TACZ 多款槍包、卓越前線載具包，所有附屬都經過修改。</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>義體改造</h3><p>加入 cyberware，醫療空投會掉落各種義體。</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>工業與基地</h3><p>沉浸工程、環流網絡等模組，把戰利品變成自己的據點。</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>空投與搜刮</h3><p>真實空投模組，許多大型建築，每 8 天出現一次隨機大型空投！</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>槍械與載具</h3><p>TACZ 多款槍包、卓越前線載具包，所有附屬都經過修改！</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>建築與屍潮</h3><p>建築裡充滿殭屍與各路NPC，每15天還有屍潮！</p></div></article>
+<article class="card pic"><div class="img"></div><div><h3>工業與基地</h3><p>許多工業模組，Create、核電？把戰利品變成自己的據點！</p></div></article>
 </div></section>
 
 <section id="join">
 <div class="band"><div class="wrap"><h2 class="display">如何加入</h2><p>三步驟，十分鐘內上線</p></div></div>
 <div class="wrap body">
 <div class="grid">
-<article class="card step"><div class="n display">1</div><h3>加入交流群</h3><p>模組包只在交流群提供。進群後請把暱稱改成遊戲名。</p>
-<a class="btn" href="https://discord.gg/24T5KgCCSU" target="_blank" rel="noopener">Discord 群</a>
+<article class="card step"><div class="n display">1</div><h3>加入交流群</h3><p>模組包只在交流群提供。<br>進群後請把暱稱改成遊戲名。</p>
+<a class="btn" href="https://discord.gg/24T5KgCCSU" target="_blank" rel="noopener">Discord</a>
 <details class="qr" style="display:inline"><summary class="btn">微信群</summary><img src="img/wechat-qr.png" alt="微信群 QR Code" onerror="this.replaceWith(Object.assign(document.createElement('p'),{textContent:'（請放入 img/wechat-qr.png）'}))"></details></article>
-<article class="card step"><div class="n display">2</div><h3>安裝模組包</h3><p>從群內下載模組包並匯入啟動器。另需手動加入群內置頂的「建築手杖」模組。</p></article>
+<article class="card step"><div class="n display">2</div><h3>安裝模組包</h3><p>從群內下載模組包並匯入啟動器。</p></article>
 <article class="card step"><div class="n display">3</div><h3>連線伺服器</h3><p>多人遊戲 → 新增伺服器，貼上下方任一線路的位址。</p></article>
 </div>
 <div class="lines" id="lines"></div>
 </div></section>
 
 <section id="news">
-<div class="band"><div class="wrap"><h2 class="display">重要更新</h2><p>最新三則，內容由 HackMD 同步</p></div></div>
+<div class="band"><div class="wrap"><h2 class="display">重要更新</h2><p>最新三則，詳細內容在 HackMD 同步</p></div></div>
 <div class="wrap body grid" id="updates"></div>
 </section>
 
 <section id="about">
 <div class="band"><div class="wrap"><h2 class="display">我們是誰</h2><p>一群在末日裡玩模組的人</p></div></div>
 <div class="wrap body who">
-<p style="max-width:40em">亡者世界整合包由<a href="#">（原作者名稱）</a>製作，目前仍在內測。我們只是在原整合包上加入部分模組、調整配方後開服遊玩。整合包本身的版權與功勞屬於原作者。</p>
+<p style="max-width:40em">亡者世界整合包由<a href="#"> TqLxQuanZ </a>製作，目前仍在內測。<br>我們只是在原整合包上加入部分模組、調整配方後開服遊玩。整合包本身的版權與功勞屬於原作者。</p>
 <h3 class="display">服主</h3>
 <div class="members">
 <div class="member"><img class="av" data-img="img/avatars/icfc.png" data-name="ICFC" alt="ICFC 頭貼"><div><div class="id display">ICFC</div><p class="bio">一段個性簽名</p><p class="duty">負責：伺服器整體營運</p></div></div>
@@ -202,7 +204,7 @@ const CONFIG={
   hackmdUrl:"#"
 };
 const LINES=[
-  {name:"大陸直連",tag:"最穩定",ip:"mc7.yldw.net:51052"},
+  {name:"大陸直連",ip:"mc7.yldw.net:51052",tag:"最穩定"},
   {name:"海外・香港一號線",ip:"as1.yldw.net:51052"},
   {name:"海外・香港二號線",ip:"as2.yldw.net:51052"},
   {name:"海外・香港三號線",ip:"as3.yldw.net:51052"}
