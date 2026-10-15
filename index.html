@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Noto+Sans+TC:wght@400;500;900&display=swap" rel="stylesheet">
 <style>
 :root{--ground:#1d201e;--steel:#2a2f2c;--steel-2:#363c38;--bone:#e7e1d0;--dim:#a7a99f;--rust:#d0582a;--hazard:#e0b72e;--ok:#7fbf6a;
---hero-img:none;--band-img:none}
+--hero-img:url("img/hero.jpg");--band-img:none}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--ground);color:var(--bone);font:400 16px/1.7 "Noto Sans TC",system-ui,sans-serif}
@@ -57,6 +57,9 @@ section .body{padding-top:32px}
 .card.pic div:last-child{padding:18px 22px 22px}
 .grid.four{grid-template-columns:repeat(2,1fr)}
 @media(max-width:600px){.grid.four{grid-template-columns:1fr}}
+.grid.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.grid.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid.four{grid-template-columns:1fr}}
 .step{border-top:6px solid var(--rust)}
 .step .n{font-size:42px;color:var(--rust);line-height:1}
 .btn{display:inline-block;margin:12px 8px 0 0;background:var(--bone);color:var(--ground);padding:8px 16px;font-weight:900;text-decoration:none;font-size:14px;cursor:pointer;border:0;font-family:inherit}
@@ -111,11 +114,11 @@ footer a{margin-right:18px}
 <main>
 <section id="features">
 <div class="band"><div class="wrap"><h2 class="display">玩法特色</h2><p>四件事，決定你能不能活著回來</p></div></div>
-<div class="wrap body grid">
-<article class="card pic"><div class="img"></div><div><h3>空投與搜刮</h3><p>真實空投模組，許多大型建築，每 8 天出現一次隨機大型空投！</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>槍械與載具</h3><p>TACZ 多款槍包、卓越前線載具包，所有附屬都經過修改！</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>建築與屍潮</h3><p>建築裡充滿殭屍與各路NPC，每15天還有屍潮！</p></div></article>
-<article class="card pic"><div class="img"></div><div><h3>工業與基地</h3><p>許多工業模組，Create、核電？把戰利品變成自己的據點！</p></div></article>
+<div class="wrap body grid four">
+<article class="card pic"><div class="img" style="background-image:url(img/features/airdrop.jpg),linear-gradient(135deg,#363c38,#4a3a2e)"></div><div><h3>空投與搜刮</h3><p>真實空投模組，許多大型建築，每 8 天出現一次隨機大型空投！</p></div></article>
+<article class="card pic"><div class="img" style="background-image:url(img/features/weapons.jpg),linear-gradient(135deg,#363c38,#4a3a2e)"></div><div><h3>槍械與載具</h3><p>TACZ 多款槍包、卓越前線載具包，所有附屬都經過修改！</p></div></article>
+<article class="card pic"><div class="img" style="background-image:url(img/features/zombie.jpg),linear-gradient(135deg,#363c38,#4a3a2e)"></div><div><h3>建築與屍潮</h3><p>建築裡充滿殭屍與各路NPC，每15天還有屍潮！</p></div></article>
+<article class="card pic"><div class="img" style="background-image:url(img/features/industry.jpg),linear-gradient(135deg,#363c38,#4a3a2e)"></div><div><h3>工業與基地</h3><p>許多工業模組，Create、核電？把戰利品變成自己的據點！</p></div></article>
 </div></section>
 
 <section id="join">
